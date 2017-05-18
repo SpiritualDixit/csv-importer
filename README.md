@@ -14,7 +14,7 @@ Odoo v8, tested on [OCB](https://github.com/OCA/OCB) also.
 
 ### Installing
 
-You need to either clone it or you can also [download](https://github.com/SpiritualDixit/csv_importer/archive/master.zip) also and we are ready for installation.
+You need to either clone it or you can [download](https://github.com/SpiritualDixit/csv_importer/archive/master.zip) also and we are ready for installation.
 
 This repo contains an example that how you can link your own module with it . You can find that example in **example** directory.
 
