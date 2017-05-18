@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_contact_details_form" model="ir.ui.view">
+            <field name="name">contact.manager.import.form</field>
+            <field name="model">contact.manager</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="address"/>
+                    </group>
+                    <group>
+                        <field name="phone"/>
+                        <field name="age"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_contact_details_import" model="ir.ui.view">
+            <field name="name">contact.importer.form</field>
+            <field name="model">contact.importer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="csv_data"/>
+                    </group>
+                    <footer>
+                        <button name="do_import" string="Import" type="object" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_contact_details_tree" model="ir.ui.view">
+            <field name="name">contact.manager.tree</field>
+            <field name="model">contact.manager</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="address"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_contact_list" model="ir.actions.act_window">
+            <field name="name">Contact List</field>
+            <field name="res_model">contact.manager</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="action_import_contact" model="ir.actions.act_window">
+            <field name="name">Import Contacts</field>
+            <field name="res_model">contact.importer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+            id="contact_manager.menu_main"
+            name="Contact Manager"/>
+            
+        <menuitem
+            id="contact_list_menu"
+            name="Contact Details"
+            parent="contact_manager.menu_main"/>
+            
+        <menuitem
+            id="contact_manager_list_menu_child"
+            name="Contact List"
+            parent="contact_manager.contact_list_menu"
+            action="action_contact_list"/>
+            
+        <menuitem
+            id="contact_manager_import_menu_child"
+            name="Import Contact"
+            parent="contact_manager.contact_list_menu"
+            action="action_import_contact"/>
+    </data>
+</openerp>

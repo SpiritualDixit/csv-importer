@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_import_task_inprogress_list_search" model="ir.ui.view">
+            <field name="name">csv.import.logger.tree</field>
+            <field name="model">csv.import.logger</field>
+            <field name="arch" type="xml">
+                <search>
+                <group string='In-progress Import Task'>
+                   <field name='import_progress'/>
+                   <filter string="In-Progress" name="in_progress_only" domain="[('import_progress','!=',100), ('import_progress','!=',0)]" />
+                </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_import_task_inprogress_list_tree" model="ir.ui.view">
+            <field name="name">csv.import.logger.tree</field>
+            <field name="model">csv.import.logger</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <button string="Start Import" type="object" name="start_import"/>
+                    <field name="import_operation" />
+                    <field name="import_sdate" />
+                    <field name="import_progress" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_import_task_inprogress_list" model="ir.actions.act_window">
+            <field name="name">Import Task List</field>
+            <field name="res_model">csv.import.logger</field>
+            <field name="view_type">form</field>
+            <field name="context">{"search_default_in_progress_only":1}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    
+        <menuitem
+            id="import_list_inprogress_menu_child"
+            name="In-progress Task"
+            parent="csv_importer.import_list_menu"
+            action="action_import_task_inprogress_list"/>
+    </data>
+</openerp>

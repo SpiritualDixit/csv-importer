@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+
+        <record id="view_import_task_list_form" model="ir.ui.view">
+            <field name="name">csv.import.logger.form</field>
+            <field name="model">csv.import.logger</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+		                <button string="Start Import" type="object" name="start_import" attrs="{'invisible': [('import_progress', '=', 100 )]}" />
+		            </header>
+                    <group>
+                        <field name="import_operation" readonly="1"/>
+                        <field name="import_sdate" readonly="1" />
+                        <field name="import_fdate" readonly="1" />
+                        <field name="import_progress" widget="progressbar" readonly="1" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_import_task_list_tree" model="ir.ui.view">
+            <field name="name">csv.import.logger.tree</field>
+            <field name="model">csv.import.logger</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="import_operation" />
+                    <field name="import_sdate" />
+                    <field name="import_progress" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_import_task_list" model="ir.actions.act_window">
+            <field name="name">Import Task List</field>
+            <field name="res_model">csv.import.logger</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem
+            id="csv_importer.menu_main"
+            name="CSV Importer"/>
+            
+        <menuitem
+            id="import_list_menu"
+            name="Import Task List"
+            parent="csv_importer.menu_main"/>
+    
+        <menuitem
+            id="import_list_menu_child"
+            name="All Task"
+            parent="csv_importer.import_list_menu"
+            action="action_import_task_list"/>
+    </data>
+</openerp>

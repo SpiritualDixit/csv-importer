@@ -1,0 +1,7 @@
+<openerp>
+    <data>
+        <record id="csv_import_installer" model="csv.import.installer">
+            <field name="name">Installer Script</field>
+        </record>
+    </data>
+</openerp>
